@@ -230,10 +230,11 @@ extension DetailsViewController: UICollectionViewDataSource {
                 
                 switch result {
                 case .success(let data):
-                    let image = UIImage(data: data)
                     
-                    for _ in 0...0 {
-                        guard let image = image else { return }
+                    let image = UIImage(data: data)
+                    guard let image = image else { return }
+                   
+                    urlString.forEach {_ in
                         self.arImages.append(image)
                     }
                     
