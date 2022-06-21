@@ -9,27 +9,33 @@ import UIKit
 
 extension UIFont {
     
-    static func timesNR14() -> UIFont? {
-        return UIFont.init(name: "TimesNR", size: 14)
+    //Regular
+   static func timesNR18() -> UIFont? {
+        return UIFont.init(name: "Times", size: 18)
     }
     
-    static func timesNR16() -> UIFont? {
-        return UIFont.init(name: "TimesNR", size: 16)
-    }
-    
-    static func timesNR18() -> UIFont? {
-        return UIFont.init(name: "TimesNR", size: 18)
-    }
-    
-    static func timesNR20() -> UIFont? {
-        return UIFont.init(name: "TimesNR", size: 21)
+    static func timesNR21() -> UIFont? {
+        return UIFont.init(name: "Times", size: 21)
     }
     
     static func timesNR22() -> UIFont? {
-        return UIFont.init(name: "TimesNR", size: 22)
+        return UIFont.init(name: "Times", size: 22)
     }
     
     static func timesNR24() -> UIFont? {
-        return UIFont.init(name: "TimesNR", size: 24)
+        return UIFont.init(name: "Times", size: 24)
+    }
+    
+    //Bold
+    static func timesBold17() -> UIFont? {
+        return UIFont.init(name: "Times-Bold", size: 18)
+    }
+    
+    static func timesBold22() -> UIFont? {
+        return UIFont.init(name: "Times-Bold", size: 22)
+    }
+    
+    static func timesBold24() -> UIFont? {
+        return UIFont.init(name: "Times-Bold", size: 24)
     }
 }

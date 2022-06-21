@@ -18,17 +18,17 @@ class RecipesTableViewCell: UITableViewCell {
     }()
     
     private let nameLabel = UILabel(text: " ",
-                                    font: UIFont.boldSystemFont(ofSize: 17),
+                                    font: .timesBold17(),
                                     color: #colorLiteral(red: 0.01834024303, green: 0.2141822278, blue: 0.4260755479, alpha: 1),
                                     line: 0)
 
     private let descriptionLabel = UILabel(text: " ",
-                                           font: .timesNR16(),
+                                           font: .timesNR18(),
                                            color: #colorLiteral(red: 0.01732282468, green: 0.2434297162, blue: 0.493919147, alpha: 1),
                                            line: 2)
 
     private let difficultLabel = UILabel(text: " ",
-                                         font: .timesNR16(),
+                                         font: .timesNR18(),
                                          color: #colorLiteral(red: 0.01753609349, green: 0.2464266851, blue: 0.5, alpha: 1),
                                          line: 0)
     
@@ -67,7 +67,7 @@ class RecipesTableViewCell: UITableViewCell {
     
     func cellConfigure(model: Recipe) {
         nameLabel.text = model.name
-        difficultLabel.text = "Difficulty: \(String(model.difficulty))"
+        difficultLabel.text = "Difficulty: \(String(model.difficulty))/5"
         descriptionLabel.text = model.recipeDescription
         
         if descriptionLabel.text == nil {

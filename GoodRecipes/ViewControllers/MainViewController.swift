@@ -10,10 +10,17 @@ import UIKit
 class MainViewController: UIViewController {
     
     private lazy var sortBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"),
+    return UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"),
                                style: .plain,
                                target: self,
                                action: #selector(sortBarButtonTapped))
+    }()
+    
+    private lazy var reloadButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(systemName: "repeat.circle"),
+                               style: .plain,
+                               target: self,
+                               action: #selector(reloadButtonItemTapped))
     }()
     
     private let recipeTableView: UITableView = {
@@ -27,7 +34,7 @@ class MainViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+        
     private let idRecipesTableViewCell = "idRecipesTableViewCell"
     private var isFiltred = false
     
@@ -42,6 +49,7 @@ class MainViewController: UIViewController {
         
         getRecipesArray()
         setupSearchBar()
+        undateNavButtonsState()
         setupNavigationBar()
         setupViews()
         setDelegate()
@@ -53,6 +61,7 @@ class MainViewController: UIViewController {
     //MARK: - Setups
     
     private func setupViews() {
+        reloadButtonItem.isEnabled = false
         view.backgroundColor = .systemBackground
         view.addSubview(recipeTableView)
     }
@@ -60,6 +69,12 @@ class MainViewController: UIViewController {
     private func setDelegate() {
         recipeTableView.delegate = self
         recipeTableView.dataSource = self
+    }
+    
+    private func undateNavButtonsState() {
+        isFiltred = false
+        sortBarButtonItem.isEnabled = true
+        reloadButtonItem.isEnabled = false
     }
     
     private func setupSearchBar() {
@@ -74,9 +89,9 @@ class MainViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        let titleLabel = UILabel(text: "GoodRecipes", font: .systemFont(ofSize: 30, weight: .semibold), color: #colorLiteral(red: 0.01834024303, green: 0.2141822278, blue: 0.4260755479, alpha: 1), line: 0)
+        let titleLabel = UILabel(text: "GoodRecipes", font: .timesBold24(), color: #colorLiteral(red: 0.01834024303, green: 0.2141822278, blue: 0.4260755479, alpha: 1), line: 0)
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
-        navigationItem.rightBarButtonItems = [sortBarButtonItem]
+        navigationItem.rightBarButtonItems = [sortBarButtonItem, reloadButtonItem]
     }
     
     //MARK: - GetRecipesArray
@@ -99,8 +114,7 @@ class MainViewController: UIViewController {
     
     private func filtringRecipes(text: String) {
         for recipe in recipeArray {
-            if recipe.name.lowercased().contains(text.lowercased())
-                || recipe.instructions.lowercased().contains(text.lowercased()) {
+            if recipe.name.lowercased().contains(text.lowercased()) || recipe.instructions.lowercased().contains(text.lowercased()) {
                 filtredArray.append(recipe)
             }
         }
@@ -112,7 +126,7 @@ class MainViewController: UIViewController {
         
         let alertController = UIAlertController(title: "", message: "Choose the sorting method:", preferredStyle: .actionSheet)
         let sortName = UIAlertAction(title: "Name", style: .default) { (action) in
-            
+                                  
             let sortedNameArrayModel = self.recipeArray.sorted{ $0.name < $1.name }
             self.recipeArray.removeAll()
             self.recipeArray = sortedNameArrayModel
@@ -129,15 +143,17 @@ class MainViewController: UIViewController {
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
-        
         alertController.addAction(sortName)
         alertController.addAction(sortUpdate)
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
+
+    @objc private func reloadButtonItemTapped(sender: UIBarButtonItem) {
+        undateNavButtonsState()
+        self.recipeTableView.reloadData()
+    }
 }
-
-
 //MARK: - UITableViewDataSource
 
 extension MainViewController: UITableViewDataSource {
@@ -148,8 +164,8 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: idRecipesTableViewCell, for: indexPath) as! RecipesTableViewCell
-        let characterModel = (isFiltred ? filtredArray[indexPath.item] : recipeArray[indexPath.item])
-        cell.cellConfigure(model: characterModel)
+        let recipesModel = (isFiltred ? filtredArray[indexPath.item] : recipeArray[indexPath.item])
+        cell.cellConfigure(model: recipesModel)
         cell.selectionStyle = .none
         return cell
     }
@@ -160,7 +176,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let characterModel = recipeArray[indexPath.item]
+        let characterModel = (isFiltred ? filtredArray[indexPath.item] : recipeArray[indexPath.item])
         let detailViewController = DetailsViewController()
         detailViewController.recipeModel = characterModel
         detailViewController.resultsArray = recipeArray
@@ -174,7 +190,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
+       
         if let texts = searchBar.text, let textRange = Range(range, in: texts) {
             let updatedText = texts.replacingCharacters(in: textRange, with: text)
             
@@ -182,15 +198,22 @@ extension MainViewController: UISearchBarDelegate {
             isFiltred = (updatedText.count > 0 ? true : false)
             filtringRecipes(text: updatedText)
             recipeTableView.reloadData()
+            sortBarButtonItem.isEnabled = (updatedText.count > 0 ? false : true)
+            reloadButtonItem.isEnabled = (updatedText.count <= 0 ? false : true)
         }
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         isFiltred = false
-        recipeArray = [Recipe]()
-        recipeTableView.reloadData()
+        filtredArray.removeAll()
         return true
+    }
+     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+        filtringRecipes(text: text)
+        recipeTableView.reloadData()
     }
 }
 

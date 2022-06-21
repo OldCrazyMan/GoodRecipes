@@ -53,20 +53,20 @@ class DetailsViewController: UIViewController {
     }()
     
     private let recipeDescriptionLabel = UILabel(text: "Description:",
-                                                 font: UIFont.boldSystemFont(ofSize: 21),
+                                                 font: .timesBold22(),
                                                  color: .darkText,
                                                  line: 0)
     
     private let instructionLabel = UILabel(text: "Instructions:",
-                                           font: UIFont.boldSystemFont(ofSize: 21),
+                                           font: .timesBold22(),
                                            color: .black, line: 0)
     
     private let difficultyLabel = UILabel(text: "Difficulty:",
-                                          font: UIFont.boldSystemFont(ofSize: 21),
+                                          font: .timesBold22(),
                                           color: .black,
                                           line: 0)
     
-    private let textDescriptionLabel = UILabel(text: " ",
+    private let textDescriptionLabel = UILabel(text: "",
                                                font: .timesNR22(),
                                                color: .black,
                                                line: 0)
@@ -82,7 +82,7 @@ class DetailsViewController: UIViewController {
                                               line: 0)
     
     private let moreTextLabel = UILabel(text: "More recipes:",
-                                        font: UIFont.italicSystemFont(ofSize: 22),
+                                        font: .timesBold22(),
                                         color: .black,
                                         line: 0)
     
@@ -163,7 +163,7 @@ class DetailsViewController: UIViewController {
         
         guard let recipeModel = recipeModel else { return }
         title = recipeModel.name
-        textInstructionLabel.attributedText = recipeModel.instructions.htmlAttributed(using: .timesNR20() ?? UIFont.systemFont(ofSize: 20))
+        textInstructionLabel.attributedText = recipeModel.instructions.htmlAttributed(using: .timesNR21() ?? UIFont.systemFont(ofSize: 21))
         textDifficultyLabel.text = String(recipeModel.difficulty)
         textDescriptionLabel.text = recipeModel.recipeDescription
         
@@ -175,6 +175,7 @@ class DetailsViewController: UIViewController {
     }
     
     private func getRandomRecip() {
+        
         for _ in 0...6 {
             let randomInt = Int.random(in: 0...resultsArray.count - 1)
             randomArray.append(resultsArray[randomInt])
@@ -230,15 +231,18 @@ extension DetailsViewController: UICollectionViewDataSource {
                 switch result {
                 case .success(let data):
                     let image = UIImage(data: data)
+                    
                     for _ in 0...0 {
                         guard let image = image else { return }
                         self.arImages.append(image)
                     }
+                    
                 case .failure(_):
                     print("Error received requesting image: 403")
                 }
                 
                 let sortAr = self.unique(source: self.arImages)
+                
                 let imageAr = sortAr[indexPath.item]
                 
                 DispatchQueue.main.async() {
@@ -257,7 +261,7 @@ extension DetailsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == moreCollectionView {
-            let characterModel = randomArray[indexPath.row]
+            let characterModel = randomArray[indexPath.item]
             let detailViewController = DetailsViewController()
             detailViewController.recipeModel = characterModel
             detailViewController.resultsArray = resultsArray

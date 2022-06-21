@@ -22,9 +22,10 @@
 		4C1D488E284770AC00725266 /* NetworkDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D488D284770AC00725266 /* NetworkDataFetch.swift */; };
 		4C1D4890284770C000725266 /* NetworkImageFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D488F284770C000725266 /* NetworkImageFetch.swift */; };
 		4C2FC0B328510327001A5625 /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2FC0B228510327001A5625 /* String + Extensions.swift */; };
-		4C2FC0B528510677001A5625 /* TimesNR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2FC0B428510675001A5625 /* TimesNR.ttf */; };
 		4C2FC0B8285106D9001A5625 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2FC0B7285106D8001A5625 /* UIFont + Extensions.swift */; };
 		4C5BDB5B28494A6F00F36AE8 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5BDB5A28494A6E00F36AE8 /* RecipeCollectionViewCell.swift */; };
+		4C5D4190285CBE2D0050A334 /* Times.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D418F285CBE2D0050A334 /* Times.ttf */; };
+		4C5D4192285CBFEB0050A334 /* Times-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D4191285CBFEB0050A334 /* Times-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,9 +46,10 @@
 		4C1D488D284770AC00725266 /* NetworkDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataFetch.swift; sourceTree = "<group>"; };
 		4C1D488F284770C000725266 /* NetworkImageFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkImageFetch.swift; sourceTree = "<group>"; };
 		4C2FC0B228510327001A5625 /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
-		4C2FC0B428510675001A5625 /* TimesNR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TimesNR.ttf; sourceTree = "<group>"; };
 		4C2FC0B7285106D8001A5625 /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
 		4C5BDB5A28494A6E00F36AE8 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C5D418F285CBE2D0050A334 /* Times.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Times.ttf; sourceTree = "<group>"; };
+		4C5D4191285CBFEB0050A334 /* Times-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Times-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +137,8 @@
 		4C2FC0B6285106B4001A5625 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				4C2FC0B428510675001A5625 /* TimesNR.ttf */,
+				4C5D418F285CBE2D0050A334 /* Times.ttf */,
+				4C5D4191285CBFEB0050A334 /* Times-Bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -225,8 +228,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C2FC0B528510677001A5625 /* TimesNR.ttf in Resources */,
+				4C5D4192285CBFEB0050A334 /* Times-Bold.ttf in Resources */,
 				4C1D487128467DF200725266 /* LaunchScreen.storyboard in Resources */,
+				4C5D4190285CBE2D0050A334 /* Times.ttf in Resources */,
 				4C1D486E28467DF200725266 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
