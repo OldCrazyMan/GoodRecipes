@@ -24,12 +24,12 @@ class RecipesTableViewCell: UITableViewCell {
 
     private let descriptionLabel = UILabel(text: " ",
                                            font: .timesNR18(),
-                                           color: #colorLiteral(red: 0.01732282468, green: 0.2434297162, blue: 0.493919147, alpha: 1),
+                                           color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
                                            line: 2)
 
     private let difficultLabel = UILabel(text: " ",
                                          font: .timesNR18(),
-                                         color: #colorLiteral(red: 0.01753609349, green: 0.2464266851, blue: 0.5, alpha: 1),
+                                         color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
                                          line: 0)
     
     //MARK: - Override

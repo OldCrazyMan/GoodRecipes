@@ -54,36 +54,36 @@ class DetailsViewController: UIViewController {
     
     private let recipeDescriptionLabel = UILabel(text: "Description:",
                                                  font: .timesBold22(),
-                                                 color: .darkText,
+                                                 color: #colorLiteral(red: 0.01834024303, green: 0.2141822278, blue: 0.4260755479, alpha: 1),
                                                  line: 0)
     
     private let instructionLabel = UILabel(text: "Instructions:",
                                            font: .timesBold22(),
-                                           color: .black, line: 0)
+                                           color: #colorLiteral(red: 0.01834024303, green: 0.2141822278, blue: 0.4260755479, alpha: 1), line: 0)
     
     private let difficultyLabel = UILabel(text: "Difficulty:",
                                           font: .timesBold22(),
-                                          color: .black,
+                                          color: #colorLiteral(red: 0.01834024303, green: 0.2141822278, blue: 0.4260755479, alpha: 1),
                                           line: 0)
     
     private let textDescriptionLabel = UILabel(text: "",
                                                font: .timesNR22(),
-                                               color: .black,
+                                               color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
                                                line: 0)
     
     private let textInstructionLabel = UILabel(text: " ",
                                                font: .timesNR22(),
-                                               color: .black,
+                                               color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
                                                line: 0)
     
     private let textDifficultyLabel = UILabel(text: " ",
                                               font: .timesNR22(),
-                                              color: .black,
+                                              color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
                                               line: 0)
     
     private let moreTextLabel = UILabel(text: "More recipes:",
                                         font: .timesBold22(),
-                                        color: .black,
+                                        color: #colorLiteral(red: 0.01834024303, green: 0.2141822278, blue: 0.4260755479, alpha: 1),
                                         line: 0)
     
     private var descriptionStackView = UIStackView()
